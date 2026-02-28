@@ -2,7 +2,11 @@ class AppAssets {
   AppAssets._();
 
   // Logo
-  static const String logo = 'assets/images/logo/logo.png';
+  static const String logo = 'assets/images/logo/new_logo1.jpeg';
+  static const String logo1 = 'assets/images/logo/new_logo1.jpeg';
+  static const String logo2 = 'assets/images/logo/new_logo2.jpeg';
+  static const String logo3 = 'assets/images/logo/new_logo3.jpeg';
+  static const String logo4 = 'assets/images/logo/new_logo4.jpeg';
 
   // Fencing
   static const String fencing1 = 'assets/images/fencing/fencing_1.png';
