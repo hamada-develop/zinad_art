@@ -11,10 +11,10 @@ class AppTheme {
     primaryColor: AppColors.accent,
     colorScheme: const ColorScheme.dark(
       primary: AppColors.accent,
-      secondary: AppColors.accentLight,
+      secondary: AppColors.secondaryAccent,
       surface: AppColors.primaryDark,
-      onPrimary: AppColors.surfaceDark,
-      onSecondary: AppColors.surfaceDark,
+      onPrimary: AppColors.textPrimary,
+      onSecondary: AppColors.primaryDark,
       onSurface: AppColors.textPrimary,
     ),
     appBarTheme: AppBarTheme(
@@ -30,11 +30,11 @@ class AppTheme {
     ),
     cardTheme: CardThemeData(
       color: AppColors.cardDark,
-      elevation: 4,
-      shadowColor: Colors.black26,
+      elevation: 8,
+      shadowColor: AppColors.accent.withOpacity(0.2),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
-    iconTheme: const IconThemeData(color: AppColors.accent, size: 24),
+    iconTheme: const IconThemeData(color: AppColors.secondaryAccent, size: 24),
     dividerTheme: const DividerThemeData(
       color: AppColors.divider,
       thickness: 0.5,
