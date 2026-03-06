@@ -1,15 +1,13 @@
-name: Flutter CI
+name: Android Fastlane with Build Test
 
 # متى يعمل هذا الـ Action؟ (عند كل Push على الـ main)
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest # سيرفر لينكس مجاني من جيت هب
+  build_test: # Any name
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3 # سحب الكود من المستودع
@@ -31,4 +29,4 @@ jobs:
       - name: Run Fastlane Tests
         run: |
           cd android
-          bundle exec fastlane tests # بينادي على الـ lane اللي عملناه
+          bundle exec fastlane android tests # بينادي على الـ lane اللي عملناه
