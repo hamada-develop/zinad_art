@@ -3,13 +3,13 @@ default_platform(:android)
 platform :android do
   desc "Run Flutter Tests"
   lane :tests do
-    # تشغيل اختبارات فلاتر
-    sh("flutter test")
+    # نستخدم ../ للخروج من مجلد android والوصول للمجلد الرئيسي حيث يوجد مجلد الـ test
+    sh("cd .. && flutter test")
   end
 
   desc "Build APK for testing"
   lane :build_only do
-    # تنظيف وبناء نسخة APK
-    sh("flutter build apk --release")
+    # نفس الشيء هنا لضمان بناء التطبيق من المسار الصحيح
+    sh("cd .. && flutter build apk --release")
   end
 end
