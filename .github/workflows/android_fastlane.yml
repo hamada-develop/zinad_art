@@ -1,16 +1,15 @@
 name: Android Fastlane with Build Test
 
-# متى يعمل هذا الـ Action؟ (عند كل Push على الـ main)
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build_test: # Any name
+  build_test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3 # سحب الكود من المستودع
+      - uses: actions/checkout@v3
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -23,10 +22,23 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Install dependencies
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2' # أو النسخة اللي بتستخدمها
+          working-directory: android # حدد مكان الـ Gemfile
+          bundler-cache: true # بيسرع الـ Build المرات الجاية
+
+      - name: Install Fastlane
+        run: |
+          cd android
+          gem install fastlane
+      # ---------------------------------------------
+
+      - name: Install Flutter dependencies
         run: flutter pub get
 
       - name: Run Fastlane Tests
         run: |
           cd android
-          bundle exec fastlane android tests # بينادي على الـ lane اللي عملناه
+          bundle exec fastlane tests
