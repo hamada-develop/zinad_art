@@ -1,0 +1,34 @@
+name: Flutter CI
+
+# متى يعمل هذا الـ Action؟ (عند كل Push على الـ main)
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # سيرفر لينكس مجاني من جيت هب
+
+    steps:
+      - uses: actions/checkout@v3 # سحب الكود من المستودع
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run Fastlane Tests
+        run: |
+          cd android
+          bundle exec fastlane tests # بينادي على الـ lane اللي عملناه
