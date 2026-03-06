@@ -1,0 +1,32 @@
+name: Android Fastlane with Build Test
+
+# متى يعمل هذا الـ Action؟ (عند كل Push على الـ main)
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build_test: # Any name
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3 # سحب الكود من المستودع
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run Fastlane Tests
+        run: |
+          cd android
+          bundle exec fastlane android tests # بينادي على الـ lane اللي عملناه
