@@ -1,0 +1,13 @@
+platform :android do
+  desc "Run Flutter Tests"
+  lane :tests do
+    # تشغيل اختبارات فلاتر
+    sh("flutter test")
+  end
+
+  desc "Build APK for testing"
+  lane :build_only do
+    # تنظيف وبناء نسخة APK
+    sh("flutter build apk --release")
+  end
+end
